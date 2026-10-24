@@ -1,0 +1,532 @@
+PROYECTO: JUEGO DE SUPERVIVENCIA ZOMBIE
+Python + Ursina + Toon + Pygame
+Plan de trabajo para David y su amigo
+
+==================================================
+1. IDEA GENERAL
+==================================================
+
+La idea es desarrollar entre dos personas un juego de supervivencia con zombies usando Python, Ursina, Toon y Pygame.
+
+Cada uno trabajará desde su propia PC y el proyecto estará alojado en GitHub.
+
+Los dos tendrán una copia completa del proyecto en su computadora, pero cada uno trabajará principalmente sobre sus propios módulos y archivos.
+
+La finalidad es reducir conflictos y poder desarrollar distintas partes del juego al mismo tiempo.
+
+
+==================================================
+2. GITHUB COMO CENTRO DEL PROYECTO
+==================================================
+
+GitHub será el repositorio central.
+
+Los dos tendrán:
+
+- Una copia local del proyecto.
+- El mismo código base.
+- Acceso al repositorio de GitHub.
+- Sus propias ramas de trabajo.
+
+NO es recomendable que los dos trabajen directamente sobre main.
+
+Ejemplo:
+
+                    GITHUB
+                       |
+             +---------+---------+
+             |                   |
+          PC DAVID           PC AMIGO
+             |                   |
+          rama david           rama amigo
+             |                   |
+          sus módulos         sus módulos
+
+
+==================================================
+3. RAMAS
+==================================================
+
+Se recomienda tener:
+
+main
+david
+amigo
+
+La rama main representa la versión estable del juego.
+
+David trabaja principalmente en:
+
+david
+
+El amigo trabaja principalmente en:
+
+amigo
+
+Cuando una parte está terminada y probada, se puede integrar a main mediante un merge o Pull Request.
+
+Ejemplo:
+
+david --------------------+
+                           |
+                           +---- main
+                           |
+amigo --------------------+
+
+
+==================================================
+4. REPARTO DE TAREAS
+==================================================
+
+DAVID
+
+Mundo y sistemas relacionados:
+
+- Casas
+- Edificios
+- Interiores
+- Puertas y ventanas
+- Mar
+- Ríos
+- Lagos
+- Clima
+- Cielo
+- Nubes
+- Lluvia
+- Tormentas
+- Niebla
+- Vehículos
+- Conducción
+- Combustible
+- Baúl del vehículo
+- Caminos
+- Decoración del mundo
+- Piedras
+- Objetos abandonados
+- Vegetación pequeña
+
+
+AMIGO
+
+Sistemas de supervivencia y combate:
+
+- Zombies
+- IA de zombies
+- Persecución
+- Ataque
+- Vida de los zombies
+- Daño
+- Aparición de zombies
+- Árboles
+- Recolección de recursos
+- Mochila
+- Inventario
+- Objetos
+- Cantidades
+- Equipamiento
+- Armas
+- Munición
+- Herramientas
+- Durabilidad
+- Sistema de construcción, si se decide incluirlo
+
+
+==================================================
+5. COSAS QUE CONVIENE HACER ENTRE LOS DOS
+==================================================
+
+Hay sistemas que afectan a todo el juego y conviene definirlos entre ambos:
+
+- Estructura general del proyecto
+- Jugador
+- Movimiento
+- Cámara
+- Colisiones
+- Carga de la isla
+- Guardado y carga
+- Vida
+- Hambre
+- Sed
+- Sonido
+- Configuración
+- Integración de los módulos
+- Sistema de conexión entre las diferentes partes
+
+Si el juego finalmente será multijugador, la arquitectura de cliente/servidor debería definirse desde el principio.
+
+
+==================================================
+6. ESTRUCTURA RECOMENDADA
+==================================================
+
+Ejemplo:
+
+juegoZombie/
+|
+|-- main.py
+|
+|-- jugador/
+|   |-- jugador.py
+|   |-- inventario.py
+|
+|-- zombies/
+|   |-- zombie.py
+|   |-- administradorZombies.py
+|
+|-- mundo/
+|   |-- isla.py
+|   |-- casas.py
+|   |-- arboles.py
+|   |-- agua.py
+|
+|-- vehiculos/
+|   |-- vehiculo.py
+|   |-- baul.py
+|
+|-- clima/
+|   |-- lluvia.py
+|   |-- tormenta.py
+|
+|-- armas/
+|   |-- arma.py
+|   |-- municion.py
+|
+|-- recursos/
+|   |-- modelos/
+|   |-- texturas/
+|   |-- sonidos/
+|
+|-- .gitignore
+|
+|-- README.md
+|
+|-- REGLAS_PROYECTO.md
+
+
+==================================================
+7. REGLA PRINCIPAL
+==================================================
+
+Cada uno debería trabajar principalmente en sus propios archivos.
+
+Ejemplo:
+
+David:
+
+mundo/casas.py
+mundo/agua.py
+clima/lluvia.py
+clima/tormenta.py
+vehiculos/vehiculo.py
+
+Amigo:
+
+zombies/zombie.py
+zombies/administradorZombies.py
+mundo/arboles.py
+armas/arma.py
+jugador/inventario.py
+
+
+De esta forma es mucho menos probable que Git encuentre conflictos.
+
+
+==================================================
+8. EVITAR MODIFICAR LOS MISMOS ARCHIVOS
+==================================================
+
+Los archivos que deberían tocarse con más cuidado son los archivos centrales.
+
+Por ejemplo:
+
+main.py
+jugador/jugador.py
+
+Si los dos modifican las mismas líneas al mismo tiempo, Git puede generar un conflicto.
+
+En ese caso tendrán que revisar los cambios y decidir qué código conservar o combinar.
+
+
+==================================================
+9. COMUNICACION ENTRE MODULOS
+==================================================
+
+Cada módulo debería tener una interfaz sencilla.
+
+Por ejemplo, el sistema de zombies podría permitir:
+
+zombie = Zombie(posicion=(10, 0, 20))
+
+y:
+
+zombie.recibirDanio(25)
+
+
+El sistema de vehículos podría permitir:
+
+vehiculo = Vehiculo(posicion=(20, 0, 10))
+
+y:
+
+vehiculo.entrar(jugador)
+
+
+La idea es que cada persona pueda usar el sistema del otro sin tener que modificar cómo funciona internamente.
+
+Esto permite que los módulos sean independientes.
+
+
+==================================================
+10. FASES DEL PROYECTO
+==================================================
+
+FASE 1 - BASE
+
+Los dos:
+
+- Crear repositorio GitHub.
+- Crear estructura de carpetas.
+- Configurar Python.
+- Configurar Ursina.
+- Configurar Toon.
+- Configurar Pygame.
+- Crear jugador.
+- Movimiento.
+- Cámara.
+- Colisiones.
+- Crear una primera isla.
+- Día y noche básico.
+
+
+FASE 2 - MUNDO
+
+David:
+
+- Casas.
+- Agua.
+- Ríos.
+- Clima.
+- Vehículos.
+- Decoración.
+
+Amigo:
+
+- Zombies.
+- Árboles.
+- Armas.
+- Herramientas.
+- Inventario.
+
+
+FASE 3 - SUPERVIVENCIA
+
+Los dos:
+
+- Vida.
+- Hambre.
+- Sed.
+- Daño.
+- Muerte.
+- Loot.
+- Recursos.
+- Fabricación.
+- Objetos.
+
+
+FASE 4 - INTEGRACION
+
+Integrar:
+
+Jugador
+|
++-- Inventario
+|     |
+|     +-- Armas
+|     +-- Munición
+|
++-- Mundo
+|     |
+|     +-- Casas
+|     +-- Vehículos
+|     +-- Agua
+|
++-- Zombies
+|     |
+|     +-- IA
+|
++-- Supervivencia
+|
++-- Clima
+
+
+==================================================
+11. GIT: FLUJO DE TRABAJO
+==================================================
+
+Antes de comenzar:
+
+git clone URL_DEL_REPOSITORIO
+
+
+Cada uno trabaja en su rama.
+
+Ejemplo:
+
+git checkout david
+
+o:
+
+git checkout amigo
+
+
+Cuando se termina una tarea:
+
+git add .
+
+git commit -m "Agregadas casas"
+
+git push
+
+
+Después se puede crear un Pull Request para integrar los cambios en main.
+
+
+==================================================
+12. .GITIGNORE
+==================================================
+
+El proyecto debería tener un archivo .gitignore para evitar subir archivos innecesarios.
+
+Por ejemplo:
+
+entorno/
+venv/
+__pycache__/
+*.pyc
+
+
+No subir el entorno virtual completo al repositorio.
+
+
+==================================================
+13. ARCHIVOS PESADOS
+==================================================
+
+Los modelos 3D, texturas, sonidos y otros recursos pueden hacer crecer mucho el repositorio.
+
+Por eso conviene decidir desde el principio cómo se van a manejar los archivos pesados.
+
+No subir archivos innecesarios, temporales o versiones duplicadas.
+
+
+==================================================
+14. REGLAS DEL PROYECTO
+==================================================
+
+1. No trabajar directamente sobre main.
+
+2. Cada uno trabaja principalmente sobre sus propios módulos.
+
+3. Avisar antes de modificar un archivo que utiliza el otro.
+
+4. Hacer commits claros.
+
+Ejemplos:
+
+"Agregada IA básica de zombies"
+
+"Agregadas casas"
+
+"Agregado sistema de lluvia"
+
+"Agregado vehículo"
+
+5. Probar el código antes de subirlo.
+
+6. No subir archivos temporales.
+
+7. No subir el entorno virtual.
+
+8. Mantener una estructura de carpetas ordenada.
+
+9. Si hay un conflicto de Git, no borrar cambios sin revisar primero.
+
+10. Antes de comenzar una tarea importante, actualizar la rama.
+
+
+==================================================
+15. DOCUMENTO RECOMENDADO
+==================================================
+
+Crear:
+
+REGLAS_PROYECTO.md
+
+Ahí pueden dejar escrito:
+
+- Qué hace cada módulo.
+- Quién es responsable.
+- Cómo se comunica cada sistema.
+- Reglas de Git.
+- Estructura de carpetas.
+- Convenciones de nombres.
+- Tareas pendientes.
+
+
+==================================================
+16. OBJETIVO
+==================================================
+
+La idea NO es que cada uno haga "su mitad del juego" y después intenten pegar dos juegos diferentes.
+
+La idea es construir UN SOLO JUEGO dividido en módulos.
+
+Cada persona desarrolla sistemas independientes que después se conectan.
+
+Así pueden trabajar en paralelo desde dos computadoras y utilizar GitHub para mantener todo sincronizado.
+
+
+==================================================
+RESUMEN RAPIDO
+==================================================
+
+DAVID:
+
+- Casas
+- Agua
+- Ríos
+- Clima
+- Lluvia
+- Tormentas
+- Vehículos
+- Baúl
+- Decoración
+- Caminos
+
+AMIGO:
+
+- Zombies
+- IA
+- Árboles
+- Armas
+- Herramientas
+- Munición
+- Mochila
+- Inventario
+- Recursos
+- Construcción
+
+LOS DOS:
+
+- Jugador
+- Movimiento
+- Cámara
+- Isla
+- Guardado
+- Supervivencia
+- Integración
+- GitHub
+- Decisiones de arquitectura
+
+
+La clave es trabajar separados por módulos, mantener una estructura ordenada y utilizar GitHub para juntar los cambios de forma controlada.
