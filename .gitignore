@@ -1,4 +1,21 @@
+# Ignorar el script privado local
 probar_IA.ps1
 probar_IA.psi
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Editores
+.idea/
+.vscode/
+
+# Temporales
 **/*.tmp
 **/*.log
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db

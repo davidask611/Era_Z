@@ -530,3 +530,68 @@ LOS DOS:
 
 
 La clave es trabajar separados por módulos, mantener una estructura ordenada y utilizar GitHub para juntar los cambios de forma controlada.
+
+==================================================
+MEJORAS RECOMENDADAS LUEGO DE LA REVISION
+==================================================
+
+1. Integración temprana
+- No dejar la integración para el final.
+- Tener un main.py mínimo que ambos puedan ejecutar desde temprano.
+- Integrar una parte pequeña a la vez para detectar errores rápidamente.
+
+2. Interfaces entre módulos
+- Definir pronto los contratos:
+  - zombie.recibirDanio(daño)
+  - vehiculo.entrar(jugador)
+  - inventario.anadir(item, cantidad)
+- Cada módulo debe poder usarse sin modificar su funcionamiento interno.
+
+3. Multijugador
+- Si el juego será multijugador, definir cliente/servidor desde el principio.
+- Si aun no es seguro, conviene empezar en un solo jugador y dejar preparado el código para expansión posterior.
+
+4. Archivos pesados
+- No subir modelos, texturas o sonidos grandes al repo normal.
+- Usar Git LFS o guardarlos fuera del repositorio y sincronizarlos aparte.
+- Mantener el repositorio ligero y rápido.
+
+5. .gitignore más completo para Python
+- Agregar desde el inicio:
+  venv/
+  __pycache__/
+  *.pyc
+  .idea/
+  .vscode/
+  *.log
+  *.tmp
+- Evitar subir entornos virtuales y archivos temporales.
+
+6. Pruebas pequeñas
+- Cada módulo debería tener una forma de probarse por separado.
+- No subir código que no se pueda ejecutar ni revisar.
+
+7. Versión estable
+- main debe representar siempre una versión estable.
+- Trabajar cambios en ramas personales.
+- Integrar a main solo cuando una función esté probada.
+
+8. Comunicación
+- Avisar antes de modificar archivos centrales como:
+  main.py
+  jugador/jugador.py
+- Evitar conflictos revisando periódicamente el estado del repositorio.
+
+9. Orden recomendado para empezar
+1. Clonar repositorio.
+2. Crear ramas personales.
+3. Crear estructura de carpetas.
+4. Configurar Python y Ursina.
+5. Crear jugador y movimiento.
+6. Crear una isla mínima.
+7. Agregar día/noche básico.
+8. Integrar primero código de ambos en main.
+
+10. Objetivo práctico
+La meta no es hacer dos juegos distintos e intentar pegarlos después.
+La meta es construir un solo juego modular, donde cada persona desarrolla sistemas independientes que luego se conectan.
