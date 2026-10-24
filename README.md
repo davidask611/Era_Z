@@ -1,2 +1,2 @@
 # Era_Z
-juego
+juego de zombies
